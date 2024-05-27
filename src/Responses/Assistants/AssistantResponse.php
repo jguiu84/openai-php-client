@@ -54,7 +54,7 @@ final class AssistantResponse implements ResponseContract, ResponseHasMetaInform
         $tools = array_map(
             fn (array $tool): AssistantResponseToolCodeInterpreter|AssistantResponseToolRetrieval|AssistantResponseToolFunction => match ($tool['type']) {
                 'code_interpreter' => AssistantResponseToolCodeInterpreter::from($tool),
-                'retrieval' => AssistantResponseToolRetrieval::from($tool),
+                'retrieval', 'file_search' => AssistantResponseToolRetrieval::from($tool),
                 'function' => AssistantResponseToolFunction::from($tool),
             },
             $attributes['tools'],
